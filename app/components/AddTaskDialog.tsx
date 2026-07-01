@@ -214,6 +214,7 @@ function ComposerDetails({
         variant="ghost"
         type="button"
         {...getToggleProps()}
+        data-testid="composer-details-toggle"
         className="text-primary-500"
         size="xs"
       >

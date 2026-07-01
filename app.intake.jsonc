@@ -47,6 +47,12 @@
                 "value": "Refine the progressive Kanban column collapse interaction and document expected drag-and-drop behavior for hidden columns",
               },
             },
+            {
+              "fill": {
+                "selector": "[data-testid='composer-description']",
+                "value": "Document the collapse behaviour and expected drag-and-drop for hidden columns.",
+              },
+            },
             { "click": "[data-testid='chip-team']" },
             { "click": "[data-testid='team-option-design']" },
             { "click": "[data-testid='chip-status']" },
@@ -57,6 +63,16 @@
             { "click": "[data-testid='priority-option-urgent']" },
             { "click": "[data-testid='chip-assignee']" },
             { "click": "[data-testid='assignee-option-0']" },
+            // Estimate lives inside the collapsed Details disclosure — expand it,
+            // then fill the required estimate so the form validates and the new
+            // card is actually created (and flash-highlighted) on submit.
+            { "click": "[data-testid='composer-details-toggle']" },
+            {
+              "fill": {
+                "selector": "[data-testid='composer-estimate']",
+                "value": "2h",
+              },
+            },
           ],
           "animation": {
             "trigger": [{ "click": "[data-testid='add-task-submit']" }],
