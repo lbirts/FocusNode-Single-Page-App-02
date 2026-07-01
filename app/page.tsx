@@ -413,7 +413,7 @@ function KanbanBoard() {
     if (highlightTimer.current) window.clearTimeout(highlightTimer.current);
     highlightTimer.current = window.setTimeout(
       () => setHighlightId(null),
-      3000,
+      450,
     );
   }
 
