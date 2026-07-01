@@ -5,9 +5,6 @@ A productivity workspace for managing tasks, boards, and focused work. Built wit
 ## Features
 
 - **Kanban boards** — Swimlane-based boards with drag-and-drop cards, priorities, WIP limits, and multiple projects (switch boards via the sidebar or `?board=` query param).
-- **Focus timer** — Pomodoro sessions (25 / 5 / 15 minutes) with a visual clock dial, play/pause/skip controls, and a distraction-blocker panel.
-- **Daily planner** — Plan and track today’s tasks with estimates, status, and board context.
-- **Team workload** — View team capacity, filters, and task assignments across projects.
 - **Command palette** — Press `⌘K` (or click the header button) to jump between views, start a focus session, and run quick actions.
 
 ## Tech stack
@@ -38,20 +35,17 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Scripts
 
-| Command        | Description              |
-| -------------- | ------------------------ |
-| `npm run dev`  | Start dev server         |
-| `npm run build`| Production build         |
-| `npm run start`| Serve production build   |
+| Command         | Description            |
+| --------------- | ---------------------- |
+| `npm run dev`   | Start dev server       |
+| `npm run build` | Production build       |
+| `npm run start` | Serve production build |
 
 ## Project structure
 
 ```
 app/
 ├── page.tsx              # Kanban board (home)
-├── focus-timer/          # Pomodoro timer
-├── daily-planner/        # Daily task planner
-├── team/                 # Team workload view
 ├── components/           # Header, SideNav, CommandPalette, UI primitives
 └── lib/                  # Board data and utilities
 ```
@@ -60,9 +54,6 @@ Board seed data lives in `app/lib/boards.ts`. UI is client-side with in-memory s
 
 ## Routes
 
-| Path              | View            |
-| ----------------- | --------------- |
-| `/`               | Kanban boards   |
-| `/focus-timer`    | Focus timer     |
-| `/daily-planner`  | Daily planner   |
-| `/team`           | Team workload   |
+| Path | View          |
+| ---- | ------------- |
+| `/`  | Kanban boards |
