@@ -6,7 +6,7 @@
       "category": "interactive-states",
       "tier": "high",
       "selector": "[data-testid=\"composer-estimate\"]",
-      "whatsWrong": "in the Add Task modal the invalid Estimate field is missing its red error border — it shows a neutral grey border even though the Details section is expanded and its required-field error is displayed",
+      "whatsWrong": "submitting the Add Task form with invalid Estimate reveals the invalid Estimate field is no longer outlined in red",
       "checks": [{ "type": "computed-style", "target": "border-top-color" }],
       "where": [
         {
@@ -21,8 +21,8 @@
       "id": "cardflash-revert",
       "category": "interactive-states",
       "tier": "high",
-      "selector": "[data-highlighted]",
-      "whatsWrong": "on the board behind the modal a just-created card's flash-highlight clears too early — at the sampled frame the new card has already dropped back to its resting background instead of staying lit",
+      "selector": "[data-testid=\"kanban-card\"][data-highlighted]",
+      "whatsWrong": "the freshly-created card's flash highlight clears almost immediately, so it is no longer highlighted while the create animation is still being shown",
       "checks": [{ "type": "computed-style", "target": "background-color" }],
       "where": [
         {
@@ -38,7 +38,7 @@
     {
       "id": "fix02-layers",
       "defects": ["estimate-border-missing", "cardflash-revert"],
-      "note": "One defect on each layer of the same moment: in the foreground Add Task modal the invalid Estimate field lost its red error border, and on the dimmed board behind it a just-created card's flash-highlight cleared too early. The prominent foreground border is easy to catch; the timing defect on the de-emphasised background layer is the one that gets missed.",
+      "note": "One defect on each layer: in the foreground Add Task modal the invalid Estimate field lost its red error border, and on the dimmed board behind it a just-created card's flash-highlight cleared too early.",
     },
   ],
 }
