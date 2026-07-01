@@ -36,8 +36,8 @@ import {
   type ReactNode,
 } from "react";
 import { useCollapse } from "react-collapsed";
-import "vest/date";
 import classnames from "vest/classnames";
+import "vest/date";
 import { create, enforce, omitWhen, test, type SuiteResult } from "vest/vest";
 
 export type AddTaskStatus = { id: string; label: string };
@@ -233,7 +233,7 @@ function ComposerDetails({
             aria-invalid={Boolean(error) || undefined}
             className={cn(
               "mt-1 w-full rounded-md border bg-transparent px-2 py-1 text-sm outline-none placeholder:text-primary-300",
-              error ? "border-red" : "border-primary-200",
+              !error && "border-primary-200",
             )}
           />
           {error && (
