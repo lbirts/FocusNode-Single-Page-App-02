@@ -1,0 +1,74 @@
+{
+  "name": "focusnode-kanban-02-spa",
+  "framework": "nextjs",
+
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "serveCommand": "npm run start",
+
+  "readyHeuristic": {
+    "url": "http://127.0.0.1:3000/",
+    "waitFor": "networkidle",
+    "timeoutMs": 30000,
+  },
+
+  "routes": [
+    {
+      "name": "kanban",
+      "url": "/",
+      "states": [
+        { "name": "default", "setup": [] },
+
+        // Foreground layer — the Add Task composer submitted empty: validation
+        // runs and the Details disclosure auto-expands so the required-field
+        // error inside it ([data-testid='composer-details-panel']) is revealed.
+        // The invalid Estimate field carries its (golden: red) error border.
+        {
+          "name": "composer-invalid-submit",
+          "setup": [
+            { "click": "[data-testid='add-task']" },
+            { "click": "[data-testid='add-task-submit']" },
+            { "waitForSelector": "[data-testid='composer-details-panel']" },
+          ],
+        },
+
+        // Background layer — submitting the filled composer prepends the new
+        // card to the To Do column and flash-highlights it for 3s; sampled
+        // mid-highlight (600ms) before the revert. In golden the card is still
+        // lit; the too-short flash has already reverted by this frame.
+        {
+          "name": "card-created-anim",
+          "setup": [
+            { "queryParam": "board", "value": "website-redesign" },
+            { "click": "[data-testid='add-task']" },
+            {
+              "fill": {
+                "selector": "[data-testid='task-title-input']",
+                "value": "Refine the progressive Kanban column collapse interaction and document expected drag-and-drop behavior for hidden columns",
+              },
+            },
+            { "click": "[data-testid='chip-team']" },
+            { "click": "[data-testid='team-option-design']" },
+            { "click": "[data-testid='chip-status']" },
+            { "click": "[data-testid='status-option-todo']" },
+            { "click": "[data-testid='chip-due']" },
+            { "click": "[data-testid='calendar-day-18']" },
+            { "click": "[data-testid='chip-priority']" },
+            { "click": "[data-testid='priority-option-urgent']" },
+            { "click": "[data-testid='chip-assignee']" },
+            { "click": "[data-testid='assignee-option-0']" },
+          ],
+          "animation": {
+            "trigger": [{ "click": "[data-testid='add-task-submit']" }],
+            "at": [600],
+          },
+        },
+      ],
+      "viewports": [{ "name": "desktop", "width": 1440, "height": 900 }],
+    },
+  ],
+
+  // The Add Task calendar renders the current month — pin the clock so
+  // calendar-day-18 resolves to a valid future date (March 18, 2026).
+  "fixedClock": "2026-03-14T12:00:00Z",
+}
